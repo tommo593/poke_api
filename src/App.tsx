@@ -6,8 +6,8 @@ function App() {
   return (
     <>
       <div>
-        <img src={logo} alt="Pokémon Logo" className="m-auto" />
-        <div className="p-4 border border-double border-gray-600">
+        <img src={logo} alt="Pokémon Logo" className="m-auto pt-6 pb-6" />
+        <div className="p-4">
           <h1>
             <Typewriter
               onInit={(typewriter) => {
@@ -25,6 +25,8 @@ function App() {
         <div>
           {" "}
           <GetPokemon />
+          <button className="border border-gray-500">Search</button>
+          <input type="text" className="bg-blue-300" />
         </div>
       </div>
     </>
