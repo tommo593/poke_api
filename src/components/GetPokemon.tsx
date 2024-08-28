@@ -26,7 +26,12 @@ const GetPokemon = () => {
     .then((res) => res.json() as Promise<GraphQLPokemonResponse<"getPokemon">>)
     .then((json) => console.log(json.data));
 
-  return <></>;
+  return (
+    <>
+      <button className="border border-gray-500">Search</button>
+      <input type="text" className="bg-blue-300" />
+    </>
+  );
 };
 
 export default GetPokemon;

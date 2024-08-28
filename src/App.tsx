@@ -1,12 +1,13 @@
 import GetPokemon from "./components/GetPokemon";
 import Typewriter from "typewriter-effect";
+import logo from "../src/assets/pkmn_logo.png";
 
 function App() {
   return (
     <>
       <div>
-        <img src="pkmn_logo.png" alt="Pokémon Logo" className="m-auto" />
-        <div className="m-12 border border-double border-gray-600">
+        <img src={logo} alt="Pokémon Logo" className="m-auto" />
+        <div className="p-4 border border-double border-gray-600">
           <h1>
             <Typewriter
               onInit={(typewriter) => {
