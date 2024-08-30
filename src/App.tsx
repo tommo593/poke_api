@@ -22,20 +22,8 @@ function App() {
             />
           </h1>
         </div>
-        <div>
-          {" "}
-          <GetPokemon />
-          <div className="flex flex-row justify-center gap-4">
-            <button className="border border-gray-500 bg-blue-300 hover:bg-blue-400 active:bg-blue-800 gap-4 px-4">
-              Search
-            </button>
-            <input
-              type="text"
-              className="bg-blue-300 shadow-md w-60 outline-none"
-            />
-          </div>
+        <div><GetPokemon /></div>
         </div>
-      </div>
     </>
   );
 }
