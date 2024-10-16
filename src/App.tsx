@@ -7,7 +7,8 @@ function App() {
   return (
     <>
       <div>
-        <img src={logo} alt="Pokémon Logo" className="m-auto pt-6 pb-6" />
+        <img src={logo} alt="Pokémon Logo" className="m-auto pt-8 pb-2" />
+        <div className="flex justify-center mb-8"><img src={pika} alt="Pikachu" width={100} /></div>
         <div className="p-4">
           <h1>
             <Typewriter
@@ -24,7 +25,6 @@ function App() {
           </h1>
         </div>
         <div><GetPokemon /></div>
-        <div className="flex justify-center mt-12"><img src={pika} alt="Pikachu" width={100} /></div>
         </div>
     </>
   );

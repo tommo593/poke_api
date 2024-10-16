@@ -70,7 +70,7 @@ const GetPokemon = () => {
           />
           <button
             type="submit" // Specify button type
-            className="border border-gray-500 bg-blue-300 hover:bg-blue-400 active:bg-blue-800 px-4"
+            className="border border-gray-500 bg-blue-400 hover:bg-blue-300 active:bg-blue-800 px-4"
           >
             Search
           </button>
