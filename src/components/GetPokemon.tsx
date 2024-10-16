@@ -94,3 +94,4 @@ const GetPokemon = () => {
 
 export default GetPokemon;
 
+ 

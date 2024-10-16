@@ -1,6 +1,7 @@
 import GetPokemon from "./components/GetPokemon";
 import Typewriter from "typewriter-effect";
 import logo from "../src/assets/pkmn_logo.png";
+import pika from "../src/assets/pika.png"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           </h1>
         </div>
         <div><GetPokemon /></div>
+        <div className="flex justify-center mt-12"><img src={pika} alt="Pikachu" width={100} /></div>
         </div>
     </>
   );
