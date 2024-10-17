@@ -70,7 +70,7 @@ const GetPokemon = () => {
       {error && <p>{error}</p>} 
 
       {pokemonData && ( 
-        <div className="border border-white p-4 max-w-80 m-auto rounded-3xl">
+        <div className="border border-white p-4 max-w-80 m-auto rounded-3xl mb-8">
           <h1>{pokemonData.species}</h1>
           <div className="flex justify-center">
           <img src={pokemonData.sprite} alt={pokemonData.species} />
