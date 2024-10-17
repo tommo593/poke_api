@@ -75,8 +75,8 @@ const GetPokemon = () => {
           <div className="flex justify-center">
           <img src={pokemonData.sprite} alt={pokemonData.species} />
           </div>
-          <p>Number: {pokemonData.num}</p>
-          <p>Type: {pokemonData.color}</p>
+          <p>Number: <strong>{pokemonData.num}</strong></p>
+          <p>Type: <strong>{pokemonData.color}</strong></p>
         </div>
       )}
     </div>

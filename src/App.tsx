@@ -14,7 +14,7 @@ function App() {
             <Typewriter
               onInit={(typewriter) => {
                 typewriter
-                  .typeString("Pokémon API Stuff")
+                  .typeString("Search Pokémon here...")
                   .callFunction(() => {
                     console.log("String typed out!");
                   })
