@@ -59,7 +59,7 @@ const GetPokemon = () => {
           />
           <button
             type="submit" 
-            className="border border-gray-500 bg-blue-400 hover:bg-blue-300 active:bg-blue-800 px-4"
+            className="btn-primary"
           >
             Search
           </button>
@@ -77,7 +77,7 @@ const GetPokemon = () => {
           </div>
           <p>Number: <strong>{pokemonData.num}</strong></p>
           <p>Type: <strong>{pokemonData.color}</strong></p>
-          <div><button className="mt-4 mb-4 border border-gray-500 bg-blue-400 hover:bg-blue-300 active:bg-blue-800 py-2 px-4">Save</button></div>
+          <div><button className="btn-primary my-4">Save</button></div>
         </div>
       )}
     </div>

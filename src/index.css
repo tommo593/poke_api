@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.btn-primary {
+  @apply border border-gray-500 bg-blue-400 hover:bg-blue-300 active:bg-blue-800 px-4;
+}
+
 * {
   background-color: #0785bb;
   font-family: "Handjet";
