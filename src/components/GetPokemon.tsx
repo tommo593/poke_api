@@ -8,14 +8,14 @@ interface PokemonData {
 }
 
 const GetPokemon = () => {
-  const [pokemonName, setPokemonName] = useState<string>(""); // State for the user's input
-  const [pokemonData, setPokemonData] = useState<PokemonData | null>(null); // State for the fetched data
-  const [loading, setLoading] = useState<boolean>(false); // State to show loading
-  const [error, setError] = useState<string | null>(null); // State to handle errors
+  const [pokemonName, setPokemonName] = useState<string>(""); 
+  const [pokemonData, setPokemonData] = useState<PokemonData | null>(null); 
+  const [loading, setLoading] = useState<boolean>(false); 
+  const [error, setError] = useState<string | null>(null); 
 
   const fetchPokemon = async (name: string) => {
-    setLoading(true); // Set loading to true when starting fetch
-    setError(null); // Reset error state
+    setLoading(true); 
+    setError(null); 
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
       
@@ -30,19 +30,19 @@ const GetPokemon = () => {
         sprite: json.sprites.front_default,
         num: json.id,
         species: json.name,
-        color: json.types[0].type.name, // Using 'type' instead of color
-      }); // Store the fetched data
+        color: json.types[0].type.name, 
+      }); 
     } catch (err) {
-      setError("Error fetching data."); // Handle fetch errors
+      setError("Error fetching data."); 
     } finally {
-      setLoading(false); // Set loading to false after fetch completes
+      setLoading(false); 
     }
   };
 
   const handleSearch = (event: React.FormEvent) => {
-    event.preventDefault(); // Prevent the form from reloading the page
+    event.preventDefault(); 
     if (pokemonName.trim()) {
-      fetchPokemon(pokemonName.trim().toLowerCase()); // Fetch data with trimmed and lowercase input
+      fetchPokemon(pokemonName.trim().toLowerCase()); 
     }
   };
 
@@ -53,12 +53,12 @@ const GetPokemon = () => {
           <input
             type="text"
             placeholder="Enter Pokémon name"
-            value={pokemonName} // Bind input to state
-            onChange={(e) => setPokemonName(e.target.value)} // Update state on change
+            value={pokemonName} 
+            onChange={(e) => setPokemonName(e.target.value)} 
             className="bg-blue-300 shadow-md w-60 outline-none"
           />
           <button
-            type="submit" // Specify button type
+            type="submit" 
             className="border border-gray-500 bg-blue-400 hover:bg-blue-300 active:bg-blue-800 px-4"
           >
             Search
@@ -66,12 +66,12 @@ const GetPokemon = () => {
         </div>
       </form>
 
-      {loading && <p>Loading...</p>} {/* Show loading state */}
-      {error && <p>{error}</p>} {/* Show error message if there's an error */}
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>} 
 
-      {pokemonData && ( // Display the Pokémon data
-        <div>
-          <h2>{pokemonData.species}</h2>
+      {pokemonData && ( 
+        <div className="border border-white p-4 max-w-80 m-auto rounded-3xl">
+          <h1>{pokemonData.species}</h1>
           <div className="flex justify-center">
           <img src={pokemonData.sprite} alt={pokemonData.species} />
           </div>
