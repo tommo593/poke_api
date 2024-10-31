@@ -92,7 +92,7 @@ const GetPokemon = () => {
           <img src={pokemonData.sprite} alt={pokemonData.species} />
           </div>
           <p>Number: <strong>{pokemonData.num}</strong></p>
-          <p>Type: <strong>{pokemonData.color} {pokemonData.secondType}</strong></p>
+          <p>Type: <strong>{pokemonData.color}{pokemonData.secondType ? ` / ${pokemonData.secondType}` : ''}</strong></p>
           <p>Ability: <strong>{pokemonData.ability}</strong></p>
           <div><button className="btn-primary my-4">Save</button></div>
         </div>
