@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const pool = require("./db");
 
+// TODO: connect have caught sections correctly
+
 // middleware
 app.use(cors());
 app.use(express.json());
