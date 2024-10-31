@@ -1,4 +1,5 @@
-import GetPokemon from "./components/GetPokemon";
+import GetPokemon from "./components/shared/GetPokemon";
+import ListPokemon from "./components/shared/ListPokemon";
 import Typewriter from "typewriter-effect";
 import logo from "../src/assets/pkmn_logo.png";
 import pika from "../src/assets/pika.png"
@@ -25,6 +26,7 @@ function App() {
           </h1>
         </div>
         <div><GetPokemon /></div>
+        <div><ListPokemon /></div>
         <p className="mb-4">CodingBruv 2024 ©</p>
         </div>
     </>
