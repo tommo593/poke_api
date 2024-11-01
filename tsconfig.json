@@ -1,13 +1,22 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
   "compilerOptions": {
+    "target": "es5",                          // or "es6" or later
+    "module": "esnext",                       // or "commonjs"
+    "jsx": "react-jsx",                       // use "react" if using older versions of React
+    "strict": true,                           // enables strict type checking options
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     }
-  }
+  },
+  "include": [
+    "src/**/*"                                // include your source files
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -2,7 +2,7 @@ import GetPokemon from "./components/shared/GetPokemon";
 import ListPokemon from "./components/shared/ListPokemon";
 import Typewriter from "typewriter-effect";
 import logo from "../src/assets/pkmn_logo.png";
-import pika from "../src/assets/pika.png"
+import pika from "../src/assets/pika.png";
 
 function App() {
   return (

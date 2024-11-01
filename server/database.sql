@@ -1,6 +1,9 @@
 CREATE DATABASE pokeapi;
 
 CREATE TABLE haveCaught(
-    todo_id SERIAL PRIMARY KEY,
-    description VARCHAR(255)
+    id SERIAL PRIMARY KEY,
+     name VARCHAR(50),
+    api_id INT UNIQUE,
+    types VARCHAR(100),
+    sprite_url VARCHAR(255)
 );

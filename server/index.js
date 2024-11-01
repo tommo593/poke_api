@@ -1,85 +1,60 @@
-const express = require("express");
+// Import necessary packages
+const express = require('express');
+const { Pool } = require('pg');
+const dotenv = require('dotenv');
+const cors = require('cors');
+
+// Load environment variables
+dotenv.config();
+
+// Initialize Express app
 const app = express();
-const cors = require("cors");
-const pool = require("./db");
 
-// TODO: connect have caught sections correctly
-
-// middleware
+// Apply middlewares
 app.use(cors());
 app.use(express.json());
 
-// create a todo
+// Configure PostgreSQL connection using environment variables
+const pool = new Pool({
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  port: parseInt(process.env.PGPORT || '5432'),
+});
 
-app.post("/haveCaught", async (req, res) => {
-    try {
-      const { description } = req.body;
-      const newHaveCaught = await pool.query(
-        "INSERT INTO haveCaught (description) VALUES($1) RETURNING *",
-        [description]
-      );
-  
-      res.json(newHaveCaught.rows[0]);
-    } catch (err) {
-      console.error(err.message);
-    }
-  });
-  
-  // get all todos
-  
-  app.get("/haveCaught", async (req, res) => {
-    try {
-      const allTodos = await pool.query("SELECT * FROM haveCaught");
-      res.json(allTodos.rows);
-    } catch (err) {
-      console.error(err.message);
-    }
-  });
-  
-  // get a todo
-  
-  app.get("/haveCaught/:id", async (req, res) => {
-    try {
-      const { id } = req.params;
-      const haveCaught = await pool.query("SELECT * FROM haveCaught WHERE haveCaught_id = $1", [
-        id,
-      ]);
-      res.json(haveCaught.rows[0]);
-    } catch (err) {
-      console.error(err.message);
-    }
-  });
-  
-  // update a todo
-  
-  app.put("/todos/:id", async (req, res) => {
-    try {
-      const { id } = req.params;
-      const { description } = req.body;
-      const updateTodo = await pool.query(
-        "UPDATE haveCaught SET description = $1 WHERE haveCaught_id = $2",
-        [description, id]
-      );
-      res.json("Pokemon was updated!");
-    } catch (err) {
-      console.error(err.message);
-    }
-  });
-  
-  // delete a todo
-  
-  app.delete("/haveCaught/:id", async (req, res) => {
-    try {
-      const { id } = req.params;
-      const deleteHaveCaught = await pool.query("DELETE FROM haveCaught WHERE haveCaught_id = $1", [
-        id,
-      ]);
-      res.json("Pokemon was deleted");
-    } catch (err) {
-      console.log(err.message);
-    }
-  });
+// Endpoint to save Pokémon data to the "haveCaught" table
+app.post('/api/save-pokemon', async (req, res) => {
+  const { name, api_id, types, sprite_url } = req.body;
 
-app.listen(5000, () => {
-    console.log("server has started on port 5000");
-  });
+  const query = `
+    INSERT INTO haveCaught (name, api_id, types, sprite_url)
+    VALUES ($1, $2, $3, $4)
+    ON CONFLICT (api_id) DO NOTHING;
+  `;
+
+  const values = [name, api_id, types, sprite_url];
+
+  try {
+    await pool.query(query, values);
+    res.status(200).json({ message: 'Pokemon saved successfully!' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to save Pokemon.' });
+  }
+});
+
+// Endpoint to fetch all saved Pokémon data from "haveCaught"
+app.get('/api/saved-pokemons', async (_, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM haveCaught');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch saved Pokemons.' });
+  }
+});
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

@@ -1,38 +1,46 @@
 import { useEffect, useState } from 'react';
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "../ui/checkbox";
 
-const ListPokemon = () => {
-
-const [pokemon, setPokemon] = useState([]);
-
-const deletePokemon = async (id) => {
-  try {
-    const deletePokemon = await fetch(`http://localhost:5000/pokeapi/${id}`, {
-      method: "DELETE",
-    });
-    setPokemon(pokeapi.filter((pokemon) => pokemon.pokemon_id !== id));
-  } catch (err) {
-    console.error(err.message);
-  }
+interface Pokemon {
+  pokemon_id: number;  // Assuming this is the ID in your database
+  num: number;         // Pokémon number
+  species: string;     // Pokémon species name
+  sprite: string;      // URL for Pokémon sprite image
 }
 
-const GetPokemon = async () => {
+const ListPokemon: React.FC = () => {
+  const [pokemon, setPokemon] = useState<Pokemon[]>([]); // State for Pokémon array
+
+ // Function to delete a Pokémon
+const deletePokemon = async (id: number) => {
   try {
-    const response = await fetch("http://localhost:5000/pokeapi");
+    await fetch(`http://localhost:5000/haveCaught/${id}`, {
+      method: "DELETE",
+    });
+    setPokemon(pokemon.filter((p) => p.pokemon_id !== id));
+  } catch (err: any) {  // Set `err` as `any` or `Error` type
+    console.error((err as Error).message);
+  }
+};
+
+// Function to fetch Pokémon data
+const getPokemon = async () => {
+  try {
+    const response = await fetch("http://localhost:5000/haveCaught");
     const jsonData = await response.json();
     setPokemon(jsonData);
-  } catch (err) {
-    console.error(err.message);
+  } catch (err: any) {
+    console.error((err as Error).message);
   }
-  };
+};
 
   useEffect(() => {
-    GetPokemon();
-  }, [])
+    getPokemon();
+  }, []);
 
   return (
     <div className="mt-4 flex justify-center">
-      <table className='table-auto'>
+      <table className="table-auto">
         <thead>
           <tr>
             <th>Pokemon</th>
@@ -42,17 +50,22 @@ const GetPokemon = async () => {
           </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>{pokemon.pokemon_name}{pokemon.pokemon_sprite}</td>
-<td><Checkbox /></td>
-<td><Checkbox />
-</td>
-<td><button className='btn-primary' onClick={() => deletePokemon(pokemon.pokemon_id)}>delete</button></td>
-        </tr>
+          {pokemon.map((p) => (
+            <tr key={p.pokemon_id}>
+              <td>{p.num} <img src={p.sprite} alt={p.species} /></td>
+              <td><Checkbox /></td>
+              <td><Checkbox /></td>
+              <td>
+                <button className="btn-primary" onClick={() => deletePokemon(p.pokemon_id)}>
+                  delete
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default ListPokemon
+export default ListPokemon;
