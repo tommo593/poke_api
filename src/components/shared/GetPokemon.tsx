@@ -51,7 +51,7 @@ const GetPokemon = () => {
           types: pokemonData.color,
           sprite_url: pokemonData.sprite,
         };
-        await axios.post('http://localhost:5000/api/save-pokemon', payload);
+        await axios.post('http://localhost:5000/haveCaught/save-pokemon', payload) ;
         alert('Pokemon saved successfully!');
         fetchSavedPokemons();
       } catch (err) {
@@ -62,7 +62,7 @@ const GetPokemon = () => {
 
   const fetchSavedPokemons = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/saved-pokemons');
+      const response = await axios.get('http://localhost:5000/haveCaught/saved-pokemons');
       setSavedPokemons(response.data);
     } catch (err) {
       console.error('Error fetching saved Pokemons:', err);

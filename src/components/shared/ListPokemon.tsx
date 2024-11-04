@@ -2,28 +2,26 @@ import { useEffect, useState } from 'react';
 import { Checkbox } from "../ui/checkbox";
 
 interface Pokemon {
-  pokemon_id: number;  // Assuming this is the ID in your database
-  num: number;         // Pokémon number
-  species: string;     // Pokémon species name
-  sprite: string;      // URL for Pokémon sprite image
+  pokemon_id: number;  
+  num: number;         
+  species: string;   
+  sprite: string;      
 }
 
 const ListPokemon: React.FC = () => {
-  const [pokemon, setPokemon] = useState<Pokemon[]>([]); // State for Pokémon array
-
- // Function to delete a Pokémon
+  const [pokemon, setPokemon] = useState<Pokemon[]>([]); 
+ 
 const deletePokemon = async (id: number) => {
   try {
     await fetch(`http://localhost:5000/haveCaught/${id}`, {
       method: "DELETE",
     });
     setPokemon(pokemon.filter((p) => p.pokemon_id !== id));
-  } catch (err: any) {  // Set `err` as `any` or `Error` type
+  } catch (err: any) {  
     console.error((err as Error).message);
   }
 };
 
-// Function to fetch Pokémon data
 const getPokemon = async () => {
   try {
     const response = await fetch("http://localhost:5000/haveCaught");

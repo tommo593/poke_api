@@ -26,7 +26,7 @@ function App() {
           </h1>
         </div>
         <div><GetPokemon /></div>
-        <div><ListPokemon /></div>
+        <div className="my-4"><ListPokemon /></div>
         <p className="mb-4">CodingBruv 2024 ©</p>
         </div>
     </>
